@@ -26,7 +26,6 @@ npm install
 ### 4. Konfigurasi Environment
 File `.env` sudah tersedia di root project.  
 Cukup ubah bagian `password` agar sesuai dengan password PostgreSQL di komputer masing-masing
-```
 
 ### 5. Jalankan Server
 ```bash
