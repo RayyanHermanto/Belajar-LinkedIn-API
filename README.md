@@ -24,11 +24,8 @@ npm install
 - User hanya perlu menjalankan project ketika PostgreSQL aktif, tanpa perlu membuat database manual.
 
 ### 4. Konfigurasi Environment
-Buat file `.env` di root project, isi dengan konfigurasi berikut:
-```
-PORT=3000
-DATABASE_URL=postgresql://username:password@localhost:5432/belajar_linkedin_class
-JWT_SECRET=your_secret_key
+File `.env` sudah tersedia di root project.  
+Cukup ubah bagian `password` agar sesuai dengan password PostgreSQL di komputer masing-masing
 ```
 
 ### 5. Jalankan Server
