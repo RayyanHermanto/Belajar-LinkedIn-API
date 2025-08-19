@@ -54,6 +54,98 @@ Belajar_LinkedIn_Class.postman_collection.json
 Import file tersebut ke Postman agar bisa langsung mencoba endpoint.
 
 ---
+## Contoh Request & Response JSON
+
+### 1. Register User
+
+**Request**
+
+``` json
+POST /api/users/register
+Content-Type: application/json
+
+{
+  "nama": "User Satu",
+  "email": "user1@mail.com",
+  "password": "123456"
+}
+```
+
+**Response**
+
+``` json
+{
+  "user": {
+    "id": 5,
+    "nama": "user1",
+    "email": "user@mail.com",
+    "role": "user",
+    "created_at": "2025-08-19T10:06:10.767Z"
+  }
+}
+```
+
+------------------------------------------------------------------------
+
+### 2. Login User
+
+**Request**
+
+``` json
+POST /api/users/login
+Content-Type: application/json
+
+{
+  "email": "user1@mail.com",
+  "password": "123456"
+}
+```
+
+**Response**
+
+``` json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": 5,
+    "nama": "user1",
+    "email": "user@mail.com",
+    "role": "user"
+  }
+}
+```
+
+------------------------------------------------------------------------
+
+### 3. Add Class (Admin only)
+
+**Request**
+
+``` json
+POST /api/classes/admin
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Kelas Node.js",
+  "description": "Belajar backend Node.js dengan PostgreSQL",
+  "instructor": "Admin Satu"
+}
+```
+
+**Response**
+
+``` json
+{
+  "class": {
+    "id": 4,
+    "title": "asik",
+    "description": "Belajar backend Node.js dengan PostgreSQL",
+    "instructor": "Admin Satu",
+    "created_at": "2025-08-19T09:37:27.863Z"
+  }
+}
+```
 
 ## 📌 List Fitur
 
