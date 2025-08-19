@@ -19,9 +19,9 @@ npm install
 ```
 
 ### 3. Setup Database
-- Pastikan PostgreSQL sudah terinstall.
-- Buat database dengan nama sesuai `.env` (misal: `belajar_linkedin_class`).
-- Jalankan query schema (jika ada file migrasi/DDL).
+- Pastikan PostgreSQL sudah terinstall dan service berjalan.
+- Jika belum ada database dengan nama **belajar_linkedin_class**, maka akan dibuat database baru secara otomatis.
+- User hanya perlu menjalankan project ketika PostgreSQL aktif, tanpa perlu membuat database manual.
 
 ### 4. Konfigurasi Environment
 Buat file `.env` di root project, isi dengan konfigurasi berikut:
