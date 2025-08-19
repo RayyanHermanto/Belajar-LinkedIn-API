@@ -1,0 +1,204 @@
+{
+  "info": {
+    "name": "Belajar_LinkedIn_Class API",
+    "_postman_id": "d50b2f61-1234-5678-9abc-123456789abc",
+    "description": "Postman tests for Belajar_LinkedIn_Class REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/api/users/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"User Satu\",\n  \"email\": \"user1@mail.com\",\n  \"password\": \"123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Register Admin",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/api/users/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Admin Satu\",\n  \"email\": \"Admin1@mail.com\",\n  \"password\": \"123456\", \n  \"role\": \"admin\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/api/users/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user1@mail.com\",\n  \"password\": \"123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Profile (Me)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/api/users/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Classes",
+      "item": [
+        {
+          "name": "Add Class (Admin only)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": "{{base_url}}/api/classes/admin",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Kelas Node.js\",\n  \"description\": \"Belajar backend Node.js dengan PostgreSQL\",\n  \"instructor\": \"Admin Satu\"\n}"
+            }
+          }
+        },
+        {
+          "name": "List Classes",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/classes"
+          }
+        },
+        {
+          "name": "Class Detail",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/classes/1"
+          }
+        },
+        {
+          "name": "Edit Class (Admin only)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": "{{base_url}}/api/classes/admin/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Kelas Node.js Lanjutan\",\n  \"description\": \"Update materi lebih lengkap\",\n  \"instructor\": \"Admin Satu\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Class (Admin only)",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/api/classes/admin/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollments",
+      "item": [
+        {
+          "name": "Enroll User to Class (Self)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/enrollments/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "enrollments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Enroll User to Class (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/enrollments/admin/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "enrollments", "admin", "1"]
+            }
+          }
+        },
+        {
+          "name": "My Enrollments",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/enrollments/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "enrollments", "me"]
+            }
+          }
+        },
+        {
+          "name": "Class Enrollments (see enrolled users)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/enrollments/class/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "enrollments", "class", "1"]
+            }
+          }
+        },
+        {
+          "name": "Unenroll from Class (Self)",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/enrollments/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "enrollments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Remove User from Class (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/enrollments/admin/1/2",
+              "host": ["{{base_url}}"],
+              "path": ["api", "enrollments", "admin", "1", "2"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3000" },
+    { "key": "token", "value": "" }
+  ]
+}
